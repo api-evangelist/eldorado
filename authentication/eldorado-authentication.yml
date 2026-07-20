@@ -1,0 +1,60 @@
+generated: '2026-07-19'
+method: searched
+source: https://api.eldorado.io/authentication/client-credentials
+docs: https://api.eldorado.io/authentication/client-credentials
+summary:
+  types: [apiKey, http]
+  api_key_in: [header]
+  http_schemes: [bearer]
+  bearer_format: JWT
+  notes: >-
+    El Dorado uses partner-level credentials (ClientID + ReferralID) sent as request headers,
+    plus a per-user JWT bearer access token obtained through an email OTP login flow. There is
+    no OAuth2 authorization server; the JWT is minted by the login endpoints.
+schemes:
+- name: X-Client-ID
+  type: apiKey
+  in: header
+  parameter: X-Client-ID
+  description: >-
+    Unique identifier assigned to each API partner / client organization. Required on all
+    requests. Issued by El Dorado after emailing api@eldorado.io. Has active/inactive status.
+  sources: [https://api.eldorado.io/authentication/client-credentials]
+- name: X-Referral-ID
+  type: apiKey
+  in: header
+  parameter: X-Referral-ID
+  description: >-
+    Identifies the integration source/channel bound to a ClientID. Source type is API or WIDGET.
+    A ClientID may have multiple ReferralIDs. Required on all requests.
+  sources: [https://api.eldorado.io/authentication/client-credentials]
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: >-
+    Per-user access token returned by /auth/login/verify-otp. Carried as
+    'Authorization: Bearer <token>'. Required for user-facing operations (KYC, order creation);
+    optional on public quote endpoints. JWT payload includes sub (user id), cid (client id),
+    rid (referral id). Token expires automatically; re-authenticate on expiry.
+  sources: [https://api.eldorado.io/authentication/client-credentials]
+flows:
+  login:
+    description: Email OTP login that mints the JWT bearer token.
+    steps:
+    - operation: POST /auth/login/send-otp
+      description: Send a one-time password to the user's email (requires ClientID + ReferralID headers).
+    - operation: POST /auth/login/verify-otp
+      description: Verify the OTP and receive the JWT access token.
+  admin:
+    description: >-
+      Separate admin/backend flow for administrative and webhook operations (distinct from
+      user-facing endpoints), documented as using ClientID + API Keys.
+credential_request:
+  contact: api@eldorado.io
+  required_information:
+  - Organization/Company name
+  - Integration type (API, Widget, or both)
+  - Technical contact information
+  - Use case description
+  - Expected integration timeline
