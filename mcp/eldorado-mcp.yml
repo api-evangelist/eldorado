@@ -1,0 +1,51 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: https://api.eldorado.io/
+summary: >-
+  Candidate MCP tool surface derived from El Dorado's documented REST operations. El Dorado does
+  not publish an official hosted/remote MCP server; this is a proposed tool list grounded in the
+  real, documented endpoints (base https://api.eldorado.io/api/). Not an El Dorado product.
+server:
+  name: eldorado
+  transport: http
+  url: null
+  auth:
+    headers: [X-Client-ID, X-Referral-ID]
+    bearer: JWT via /auth/login/verify-otp
+tools:
+- name: send_login_otp
+  description: Send a one-time password to a user's email to begin login.
+  source_operation: POST /auth/login/send-otp
+- name: verify_login_otp
+  description: Verify the emailed OTP and obtain a JWT access token.
+  source_operation: POST /auth/login/verify-otp
+- name: get_kyc_status
+  description: Retrieve a user's KYC level and status.
+  source_operation: GET /kyc
+- name: submit_kyc
+  description: Submit KYC information to advance a user's verification level.
+  source_operation: POST /kyc
+- name: verify_kyc_phone
+  description: Verify a user's phone number with a code.
+  source_operation: POST /kyc/phone
+- name: list_currencies
+  description: List supported fiat and crypto currencies.
+  source_operation: GET /currencies
+- name: list_countries
+  description: List supported countries (ISO alpha-2).
+  source_operation: GET /countries
+- name: list_payment_methods
+  description: List supported local payment methods.
+  source_operation: GET /payment-methods
+- name: create_buy_quote
+  description: Create a fiat->crypto (buy) quote.
+  source_operation: POST /quote/buy
+- name: create_sell_quote
+  description: Create a crypto->fiat (sell) quote.
+  source_operation: POST /quote/sell
+- name: get_server_time
+  description: Get current server time / API health.
+  source_operation: GET /clock
+notes:
+- payment-methods and tokens/chains list endpoints are referenced by the docs; exact paths beyond /currencies and /countries were confirmed from code samples where shown.

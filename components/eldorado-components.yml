@@ -1,0 +1,56 @@
+generated: '2026-07-19'
+method: searched
+source: https://api.eldorado.io/guides/widget
+docs: https://api.eldorado.io/guides/widget
+summary: >-
+  El Dorado ships a prebuilt, embeddable Exchange Widget (onramp/offramp UI) powered by the same
+  public API. It supports a Simple mode (open or iframe-embed the hosted widget) and a Hybrid
+  mode (use the public /quote endpoints to prefill the widget via URL query parameters).
+components:
+- family: Exchange Widget
+  kind: hosted-embeddable-ui
+  name: El Dorado Onramps/Offramps Widget
+  urls:
+    launch: https://widget.eldorado.io/
+    exchange: https://widget.eldorado.io/exchange
+  embed: iframe or direct link
+  modes:
+  - name: simple
+    description: Open the widget directly or embed it in a website; the user drives the whole flow.
+  - name: hybrid
+    description: >-
+      Call the public /quote/buy and /quote/sell endpoints (no user auth required) to display
+      exchange details, then open the widget with all data prefilled via URL query parameters.
+  query_parameters:
+  - name: operation
+    values: [BUY, SELL]
+    description: Start the flow in buy (onramp) or sell (offramp) mode.
+  - name: token
+    values: address-or-symbol
+    description: Token to buy/sell.
+  - name: chain
+    values: chain-id
+    description: Chain where the token is received/sent (e.g. 42161 Arbitrum).
+  - name: currency
+    values: currency-id
+    description: Fiat currency to pay/receive (e.g. ARS).
+  - name: paymentMethod
+    values: payment-method-id
+    description: Payment method to pay/receive (e.g. bank_tx_ar).
+  - name: amount
+    values: string-or-number
+    description: Amount to buy/sell.
+  - name: clientId
+    values: string
+    description: Optional ClientID to track widget usage and webhook notifications.
+  - name: referralId
+    values: string
+    description: Optional ReferralID to track widget usage and webhook notifications.
+  - name: externalReferenceId
+    values: string
+    description: Optional external reference (letters, numbers, hyphens) to identify the quote/order.
+  example: >-
+    https://widget.eldorado.io/exchange?currency=ARS&paymentMethod=bank_tx_ar&token=0xaf88d065e77c8cC2239327C5EDb3A432268e5831&chain=42161&amount=50000&operation=BUY
+integrations:
+- partner: World (WorldApp)
+  description: WorldApp integrates the El Dorado widget as a mini app within its ecosystem.

@@ -1,0 +1,48 @@
+generated: '2026-07-19'
+method: searched
+source: https://api.eldorado.io/troubleshooting/common-issues
+docs: https://api.eldorado.io/troubleshooting/common-issues
+format: custom
+envelope:
+  fields: [code, reason]
+  note: >-
+    Error responses carry an error code and a reason string; the docs direct integrators to
+    "check the error code and reason for specific guidance" and to the Error Reference. The
+    public docs do not publish an RFC 9457 application/problem+json contract or a full code list.
+error_reference: https://api.eldorado.io/troubleshooting/common-issues
+categories:
+- area: authentication
+  problems:
+  - symptom: Token not working
+    remediation: Re-authenticate to obtain a fresh JWT access token.
+  - symptom: Frequent session expiry
+    remediation: Implement token-refresh logic (tokens expire automatically).
+  - symptom: OTP not received
+    remediation: Check spam folder and verify the email address.
+- area: orders
+  problems:
+  - symptom: Cannot create orders
+    remediation: Check active order limits; complete or cancel existing orders first.
+  - symptom: Order stuck
+    remediation: Verify payment completion and order status.
+  - symptom: Invalid parameters
+    remediation: Review required fields in the API documentation.
+- area: kyc
+  problems:
+  - symptom: KYC required
+    remediation: Complete the verification process (L2 minimum to trade).
+  - symptom: Profile not ready
+    remediation: Wait for profile creation to complete.
+  - symptom: Insufficient limits
+    remediation: Upgrade the user's KYC level to raise trading limits.
+- area: rate-limiting
+  problems:
+  - symptom: Too many requests
+    remediation: Implement request throttling.
+  - symptom: Account locked
+    remediation: Wait for the lockout period to expire.
+  - symptom: Active orders limit reached
+    remediation: Complete existing orders before creating new ones.
+support:
+  email: api-support@eldorado.io
+  status_check: https://api-testnet.eldorado.io/api/clock

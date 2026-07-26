@@ -1,0 +1,16 @@
+generated: '2026-07-19'
+method: generated
+source: https://api.eldorado.io/guides/user-journey
+note: >-
+  Packaged agent operating instructions grounded in El Dorado's documented REST operations
+  (no OpenAPI is published; operations are the real documented endpoint paths). Test-mode inputs
+  come from sandbox/eldorado-sandbox.yml.
+skills:
+- file: eldorado-buy-crypto-onramp.md
+  name: Buy crypto with local fiat (onramp)
+  api: https://api.eldorado.io/api/
+  operations: [POST /auth/login/send-otp, POST /auth/login/verify-otp, GET /kyc, POST /kyc, GET /currencies, GET /payment-methods, POST /quote/buy]
+- file: eldorado-sell-crypto-offramp.md
+  name: Sell crypto for local fiat (offramp)
+  api: https://api.eldorado.io/api/
+  operations: [POST /auth/login/send-otp, POST /auth/login/verify-otp, GET /kyc, POST /quote/sell]

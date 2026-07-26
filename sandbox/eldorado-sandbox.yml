@@ -1,0 +1,51 @@
+generated: '2026-07-19'
+method: searched
+source: https://api.eldorado.io/guides/sandbox
+docs: https://api.eldorado.io/guides/sandbox
+summary: >-
+  El Dorado publishes a full testnet sandbox for integration testing without real funds. It is
+  a market-maker model: the integrator creates an account in the El Dorado DEV app, provides
+  USDT<->FIAT liquidity via ads, and executes orders against a USDT testnet token on Arbitrum
+  Sepolia funded from a testnet faucet.
+environments:
+  testnet:
+    base_url: https://api-testnet.eldorado.io/api/
+    app: El Dorado DEV app (create a new account to act as market maker / liquidity provider)
+    widget: https://widget.eldorado.io/
+  production:
+    base_url: https://api.eldorado.io/api/
+test_token:
+  symbol: USDT
+  network: Arbitrum Sepolia
+  chain_id: 421614
+  address: '0x25f5D414F85b7f4668ADe4E557ef234023208771'
+  decimals: 18
+  note: >-
+    Only this USDT testnet token on Arbitrum Sepolia is supported in the sandbox; any other
+    token or chain causes the order to fail.
+faucet:
+  description: El Dorado testnet faucet mints dummy USDT (Arbitrum Sepolia) for orders.
+  requirements:
+  - Web3 wallet (MetaMask, WalletConnect, etc.)
+  - Arbitrum Sepolia ETH for gas
+  - Arbitrum Sepolia network configured in the wallet
+magic_test_values:
+- context: Email OTP (login /auth/login/verify-otp)
+  value: '12345678'
+  note: In the test environment the email login OTP is always 12345678.
+- context: Phone verification OTP (POST /api/kyc/phone)
+  value: '1234'
+  note: Use code 1234 to verify phone numbers in the test/development environment.
+- context: KYC residence (test)
+  value: country=Argentina (AR), city=CABA
+- context: KYC phone (test)
+  value: Any dummy Argentinian phone number (e.g. 11 XXXX XXXX)
+liquidity_setup:
+  steps:
+  - Create a new account in the El Dorado DEV app and complete registration/KYC.
+  - Contact El Dorado to enable ad creation on the account.
+  - Create a Sell ad (users buy USDT from you) and/or a Buy ad (users sell USDT to you).
+  - Offer enough liquidity in the chosen fiat currency and payment method to execute test orders.
+  note: In production all liquidity is provided by El Dorado's users; in sandbox the integrator is the market maker.
+health:
+  clock_endpoint: https://api-testnet.eldorado.io/api/clock

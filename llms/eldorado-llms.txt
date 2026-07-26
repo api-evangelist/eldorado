@@ -1,0 +1,41 @@
+# El Dorado API
+
+> El Dorado is a stablecoin-powered payments SuperApp for Latin America. Its public API provides crypto onramp/offramp (buy and sell) infrastructure that converts between local fiat currencies (USD, ARS, BRL, COP, PEN and more) and crypto settled in USDT on Arbitrum, with built-in KYC, 80+ local payment methods, and an embeddable Exchange Widget. Backed by Multicoin Capital, Coinbase Ventures and Berkeley SkyDeck.
+
+Base URLs: production https://api.eldorado.io/api/ , testnet https://api-testnet.eldorado.io/api/
+Authentication: X-Client-ID + X-Referral-ID headers (issued via api@eldorado.io) plus a JWT bearer token from an email OTP login. Trading requires KYC level L2+.
+
+## Docs
+- [Introduction](https://api.eldorado.io/): What El Dorado is, features, base URLs.
+- [Quick Start](https://api.eldorado.io/guides/quick-start): Authenticate, complete KYC, create a first order.
+- [Client Credentials / Authentication](https://api.eldorado.io/authentication/client-credentials): ClientID, ReferralID, JWT, OTP login.
+- [Sandbox](https://api.eldorado.io/guides/sandbox): Testnet, USDT Arbitrum Sepolia test token, faucet, test OTPs.
+- [User Journey](https://api.eldorado.io/guides/user-journey): End-to-end buy/sell flow.
+- [Quotes (Trading)](https://api.eldorado.io/trading/quotes): Create buy/sell quotes.
+- [Orders](https://api.eldorado.io/concepts/orders): Buy and sell order structure and lifecycle.
+- [Currencies](https://api.eldorado.io/concepts/currencies): Supported fiat/crypto currency IDs.
+- [Countries](https://api.eldorado.io/concepts/countries): Supported country ISO codes.
+- [KYC](https://api.eldorado.io/kyc/): KYC overview and status values.
+- [KYC Levels](https://api.eldorado.io/kyc/kyc-levels): L0-L4 levels and trading limits.
+- [Exchange Widget](https://api.eldorado.io/guides/widget): Embeddable onramp/offramp widget.
+- [Troubleshooting](https://api.eldorado.io/troubleshooting/common-issues): Common errors and remediation.
+
+## Operations
+- POST /auth/login/send-otp — send email OTP
+- POST /auth/login/verify-otp — verify OTP, get JWT
+- GET /kyc — get KYC status ; POST /kyc — submit KYC ; POST /kyc/phone — verify phone
+- GET /currencies — supported currencies ; GET /countries — supported countries ; GET /payment-methods — payment methods
+- POST /quote/buy — buy (fiat->crypto) quote ; POST /quote/sell — sell (crypto->fiat) quote
+- Create/get orders from a quote (apiOrderId)
+- GET /clock — server time / health
+
+## Artifacts (API Evangelist enrichment)
+- [Authentication](https://raw.githubusercontent.com/api-evangelist/eldorado/refs/heads/main/authentication/eldorado-authentication.yml)
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/eldorado/refs/heads/main/conventions/eldorado-conventions.yml)
+- [Error catalog](https://raw.githubusercontent.com/api-evangelist/eldorado/refs/heads/main/errors/eldorado-problem-types.yml)
+- [Sandbox](https://raw.githubusercontent.com/api-evangelist/eldorado/refs/heads/main/sandbox/eldorado-sandbox.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/eldorado/refs/heads/main/data-model/eldorado-data-model.yml)
+- [Components / Widget](https://raw.githubusercontent.com/api-evangelist/eldorado/refs/heads/main/components/eldorado-components.yml)
+- [Webhooks](https://raw.githubusercontent.com/api-evangelist/eldorado/refs/heads/main/asyncapi/eldorado-webhooks.yml)
+- [MCP (candidate)](https://raw.githubusercontent.com/api-evangelist/eldorado/refs/heads/main/mcp/eldorado-mcp.yml)
+- [Agent skills](https://raw.githubusercontent.com/api-evangelist/eldorado/refs/heads/main/skills/_index.yml)

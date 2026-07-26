@@ -1,0 +1,32 @@
+generated: '2026-07-19'
+method: derived
+source: https://api.eldorado.io/
+docs: https://api.eldorado.io/
+summary: >-
+  Standards conformance for the El Dorado API, derived from the public documentation. El Dorado is
+  a regulated onramp/offramp with built-in KYC/AML but does not publish a formal certifications
+  program (SOC 2, ISO 27001, PCI, etc.), so no Compliance pointer is asserted.
+standards:
+- id: jwt-bearer
+  conforms: true
+  evidence: JWT bearer access tokens (RFC 7519) issued via OTP login; Authorization Bearer header.
+- id: oauth2
+  conforms: false
+  evidence: No OAuth2 authorization server or flows; auth is partner headers + minted JWT.
+- id: openid-connect
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom {code, reason} envelope, not application/problem+json.
+- id: webhooks
+  conforms: true
+  evidence: Webhook notifications documented for order/widget activity.
+- id: kyc-aml
+  conforms: true
+  evidence: Tiered KYC (L0-L4) with document verification and source-of-funds checks gating trading limits.
+- id: rest-json
+  conforms: true
+  evidence: REST/JSON over HTTPS.
+- id: openapi
+  conforms: false
+  evidence: No machine-readable OpenAPI/Swagger specification published (Docusaurus prose docs only).

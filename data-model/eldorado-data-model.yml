@@ -1,0 +1,83 @@
+generated: '2026-07-19'
+method: searched
+source: https://api.eldorado.io/concepts/orders
+docs: https://api.eldorado.io/
+summary: >-
+  Entity-relationship model for the El Dorado onramp/offramp API, derived from the documented
+  request/response payloads (quotes, orders, KYC, currencies, payment methods, tokens, countries).
+entities:
+- name: User
+  id_field: userId
+  description: End user of a partner integration; identified by JWT sub claim.
+  fields: [userId, kycLevel, kycStatus]
+- name: Quote
+  id_field: quoteId
+  description: Priced buy/sell offer with fees, exchange rate and expiry.
+  fields: [quoteId, orderType, fixedAmountSide, amountIn, amountOut, minAmountOut, token, chainId, exchangeRate, fee, createdAt, expiresAt]
+- name: Order
+  id_field: apiOrderId
+  description: Structured buy (fiat->crypto) or sell (crypto->fiat) request executed against a quote.
+  fields: [apiOrderId, orderStatus, type, quote, fiatDetails, cryptoDetails, transferInfo, externalReferenceId]
+- name: Currency
+  id_field: id
+  description: Fiat or crypto currency (e.g. ARS, COP, USD, USDT) with localized descriptions.
+  fields: [id, type, description, symbol, symbolShort, iconUrl]
+- name: PaymentMethod
+  id_field: paymentMethodId
+  description: Local payment rail used to pay/receive fiat (e.g. bank_tx_ar, app_nequi_co).
+  fields: [paymentMethodId]
+- name: Token
+  id_field: address
+  description: Crypto token addressable by symbol or contract address on a given chain.
+  fields: [address, symbol, chainId, decimals]
+- name: Country
+  id_field: iso
+  description: Supported country by ISO-3166 alpha-2 code (CO, PE, BR, AR, PA, BO, PY, DO, GT, EC, CR, HN, TT).
+  fields: [iso]
+- name: KYC
+  id_field: userId
+  description: Know-Your-Customer record; levels L0-L4 gate trading limits.
+  fields: [userId, kycLevel, kycStatus, kycNextLevel, action]
+relationships:
+- from: Order
+  to: Quote
+  type: belongs_to
+  via: quote
+- from: Order
+  to: PaymentMethod
+  type: belongs_to
+  via: fiatDetails.paymentMethodId
+- from: Order
+  to: Token
+  type: belongs_to
+  via: cryptoDetails.tokenAddress
+- from: Quote
+  to: Currency
+  type: belongs_to
+  via: fiatCurrencyId
+- from: Quote
+  to: Token
+  type: belongs_to
+  via: token
+- from: Quote
+  to: PaymentMethod
+  type: belongs_to
+  via: paymentMethodId
+- from: Order
+  to: User
+  type: belongs_to
+  via: jwt.sub
+- from: User
+  to: KYC
+  type: has_one
+  via: userId
+- from: PaymentMethod
+  to: Country
+  type: belongs_to
+  via: country
+kyc_levels:
+  L0: {trading: false, limit: none}
+  L1: {trading: false, requirements: [countryOfResidence, cityOfResidence, phoneNumber]}
+  L2: {trading: true, limit: 10000 USDT/month, requirements: [government-id, document-verification]}
+  L3: {trading: true, limit: 250000 USDT/month, requirements: [source-of-funds, enhanced-background-check]}
+  L4: {trading: true, limit: 1000000 USDT/month, requirements: [enhanced-due-diligence]}

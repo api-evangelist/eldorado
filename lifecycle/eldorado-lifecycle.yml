@@ -1,0 +1,25 @@
+generated: '2026-07-19'
+method: searched
+source: https://api.eldorado.io/
+docs: https://api.eldorado.io/guides/quick-start
+versioning:
+  scheme: base-path
+  current: /api/
+  docs: https://api.eldorado.io/
+  note: No explicit version segment or version header is documented; the API is served under /api/.
+environments:
+  production: https://api.eldorado.io/api/
+  testnet: https://api-testnet.eldorado.io/api/
+health:
+  clock_endpoint: https://api-testnet.eldorado.io/api/clock
+  note: Returns current server time; documented as the way to check API status/availability.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation/sunset policy published at time of capture.
+status_page: null
+sla:
+  url: null
+  note: No published SLA/uptime target found.
+roadmap:
+  note: Docs mention forthcoming support for fixedAmountSide=OUT (fixing the output amount).

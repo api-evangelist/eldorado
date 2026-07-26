@@ -1,0 +1,74 @@
+generated: '2026-07-19'
+method: searched
+source: https://api.eldorado.io/
+docs: https://api.eldorado.io/guides/quick-start
+summary: >-
+  Cross-cutting request/response semantics for the El Dorado onramp/offramp API, harvested from
+  the public documentation. REST/JSON over HTTPS, partner headers plus JWT bearer, a two-step
+  quote-then-order model, and USDT-on-Arbitrum settlement for all trades.
+base_urls:
+  production: https://api.eldorado.io/api/
+  testnet: https://api-testnet.eldorado.io/api/
+transport:
+  protocol: https
+  format: application/json
+  style: REST
+authentication:
+  headers:
+  - X-Client-ID    # required, partner id
+  - X-Referral-ID  # required, integration channel id
+  - Authorization  # Bearer <JWT>, required for user-facing writes, optional for public quotes
+  ref: authentication/eldorado-authentication.yml
+identifiers:
+  external_reference_id:
+    field: externalReferenceId
+    description: >-
+      Optional caller-supplied reference (letters, numbers, hyphens only) to help identify a
+      quote/order and correlate widget/webhook notifications. Not documented as an idempotency key.
+  quote_id: quoteId
+  order_id: apiOrderId
+  user_scope:
+    description: JWT payload binds requests to a user (sub), client (cid) and referral (rid).
+quote_order_model:
+  description: >-
+    Trades are two-step. First create a quote (/quote/buy or /quote/sell) which returns pricing,
+    fees, exchange rate and an expiry (expiresAt). Then create an order from the quote. Quotes
+    expire; a fresh quote is required after expiry.
+  fixed_amount_side:
+    field: fixedAmountSide
+    supported: [IN]
+    note: Only IN (fix the input amount) is currently supported; OUT is planned.
+settlement:
+  token: USDT
+  chain: Arbitrum (chainId 42161)
+  note: >-
+    All orders settle in USDT on Arbitrum to concentrate liquidity. Other tokens/chains are
+    swapped/bridged via li.fi (txData provided by the API for sell orders).
+pagination:
+  documented: false
+  note: No pagination scheme documented in the public docs at time of capture.
+idempotency:
+  documented: false
+  note: >-
+    No Idempotency-Key header is documented. Sell orders are resilient: if an order fails after
+    the user deposited USDT, the deposited funds carry to a new order with the same parameters.
+versioning:
+  scheme: base-path
+  current: /api/
+  note: No explicit version segment or version header documented.
+rate_limiting:
+  documented: true
+  signal: false
+  note: >-
+    Docs acknowledge rate limiting ("Too many requests: implement request throttling",
+    account lockouts, and active-order limits) but publish no specific limits or response headers.
+error_envelope:
+  ref: errors/eldorado-problem-types.yml
+  shape:
+    note: Errors carry an error code and reason; consult the docs Error Reference.
+health:
+  clock_endpoint: https://api-testnet.eldorado.io/api/clock
+  note: 'Returns current server time (a JSON time field, ISO-8601); used to check API availability.'
+webhooks:
+  ref: asyncapi/eldorado-webhooks.yml
+  note: Widget/order activity emits webhook notifications keyed by clientId/referralId.

@@ -1,0 +1,28 @@
+generated: '2026-07-19'
+method: searched
+source: https://api.eldorado.io/guides/widget
+docs: https://api.eldorado.io/authentication/client-credentials
+spec_type: Webhooks
+summary: >-
+  El Dorado delivers webhook notifications for order/widget activity. The widget and API accept a
+  clientId/referralId used to "track usage and webhook notifications", and the authentication docs
+  describe a separate admin endpoint flow for backend operations including webhooks. El Dorado
+  publishes no AsyncAPI document and no public event-catalog detail, so this captures the webhook
+  surface as documented rather than a full channel/message schema.
+delivery:
+  mechanism: webhook
+  correlation:
+  - clientId
+  - referralId
+  - externalReferenceId
+events:
+- name: order-notification
+  description: >-
+    Notifications about order/quote activity associated with a partner's clientId/referralId
+    (e.g. widget-initiated buy/sell flows). Exact payload schema not published.
+  status: documented
+admin:
+  description: Webhook configuration/management is handled through El Dorado's admin/backend endpoint flow (ClientID + API Keys).
+notes:
+- No AsyncAPI spec is published; do not treat this as a machine-readable event contract.
+- Payload schemas and the full event list are not in the public docs at time of capture.
