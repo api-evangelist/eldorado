@@ -2,16 +2,17 @@ generated: '2026-07-19'
 method: derived
 status: candidate
 source: https://api.eldorado.io/
-summary: >-
-  Candidate MCP tool surface derived from El Dorado's documented REST operations. El Dorado does
-  not publish an official hosted/remote MCP server; this is a proposed tool list grounded in the
-  real, documented endpoints (base https://api.eldorado.io/api/). Not an El Dorado product.
+summary: Candidate MCP tool surface derived from El Dorado's documented REST operations. El Dorado does
+  not publish an official hosted/remote MCP server; this is a proposed tool list grounded in the real,
+  documented endpoints (base https://api.eldorado.io/api/). Not an El Dorado product.
 server:
   name: eldorado
   transport: http
   url: null
   auth:
-    headers: [X-Client-ID, X-Referral-ID]
+    headers:
+    - X-Client-ID
+    - X-Referral-ID
     bearer: JWT via /auth/login/verify-otp
 tools:
 - name: send_login_otp
@@ -48,4 +49,11 @@ tools:
   description: Get current server time / API health.
   source_operation: GET /clock
 notes:
-- payment-methods and tokens/chains list endpoints are referenced by the docs; exact paths beyond /currencies and /countries were confirmed from code samples where shown.
+- payment-methods and tokens/chains list endpoints are referenced by the docs; exact paths beyond /currencies
+  and /countries were confirmed from code samples where shown.
+deployment:
+  mode: none
+  verified: derived
+  tools: 11
+  checked: '2026-08-12'
+  source: catalog MCP census
