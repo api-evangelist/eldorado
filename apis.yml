@@ -38,6 +38,19 @@ tags:
 - Crypto Web3
 - Stablecoins
 - Payments
+- On-Ramp
+- Off-Ramp
+- Cryptocurrency
+- Latin America
+- KYC
+- Compliance
+- Fintech
+- Trading
+tags_raw:
+- Company
+- Crypto Web3
+- Stablecoins
+- Payments
 - Onramp
 - Offramp
 - Cryptocurrency
@@ -60,6 +73,12 @@ apis:
   humanURL: https://api.eldorado.io/
   baseURL: https://api.eldorado.io/api/
   tags:
+  - On-Ramp
+  - Off-Ramp
+  - Trading
+  - Crypto
+  - Payments
+  tags_raw:
   - Onramp
   - Offramp
   - Trading
