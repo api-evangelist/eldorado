@@ -46,6 +46,10 @@ x-tier-reason: public-api-documented
 specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-19'
+x-docs-platform: docusaurus
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
+x-docs-hosting: aws-cloudfront
 tags:
 - Company
 - Crypto Web3
@@ -59,6 +63,7 @@ tags:
 - Compliance
 - Fintech
 - Trading
+- Web3
 tags_raw:
 - Company
 - Crypto Web3
@@ -72,6 +77,7 @@ tags_raw:
 - Compliance
 - Fintech
 - Trading
+- Web3
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
