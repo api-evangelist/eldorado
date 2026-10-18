@@ -52,7 +52,7 @@ x-docs-platform-checked: 2026-10-03
 x-docs-hosting: aws-cloudfront
 tags:
 - Company
-- Crypto Web3
+- Web3
 - Stablecoins
 - Payments
 - On-Ramp
@@ -63,7 +63,6 @@ tags:
 - Compliance
 - Fintech
 - Trading
-- Web3
 tags_raw:
 - Company
 - Crypto Web3
@@ -95,7 +94,7 @@ apis:
   - On-Ramp
   - Off-Ramp
   - Trading
-  - Crypto
+  - Cryptocurrency
   - Payments
   tags_raw:
   - Onramp
