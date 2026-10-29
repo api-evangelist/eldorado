@@ -64,6 +64,101 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Eldorado is a company surfaced as a portfolio company of multicoin-capital and added to the API Evangelist network as a stub for enrichment. Sector: crypto-web3. This profile is a lead awaiting the enrichment pipeline.
+El Dorado is a stablecoin-powered payments SuperApp for Latin America whose public API provides crypto onramp/offramp (buy and sell) infrastructure across Argentina, Brazil, Colombia, Peru, Bolivia, Panama, Paraguay, the Dominican Republic and more. The API lets partners create buy and sell quotes and orders that convert between local fiat currencies (USD, ARS, BRL, COP, PEN and others) and crypto (settled in USDT on Arbitrum), with built-in KYC verification, 80+ local payment methods, and an embeddable Exchange Widget for no-code or low-code integration. Authentication uses per-partner ClientID and ReferralID headers plus a JWT bearer token obtained via an OTP login flow. El Dorado is backed by Multicoin Capital, Coinbase Ventures and Berkeley SkyDeck and has surpassed 500,000 users.
 
-Backed by: multicoin-capital — https://eldorado.io
+**Areas:** Company · Web3 · Stablecoins · Payments · On-Ramp · Off-Ramp · Cryptocurrency · Latin America · KYC · Compliance · Fintech · Trading
+
+## Eldorado on APIs.io
+
+Everything profiled for Eldorado is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/eldorado/](https://apis.io/providers/eldorado/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [El Dorado API](https://apis.io/apis/eldorado/el-dorado-api/) — The El Dorado onramp/offramp trading API for converting between Latin American fiat currencies and crypto (USDT on Arbitrum). Create buy/sell quotes and…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Eldorado Webhooks](https://apis.io/asyncapis/eldorado/eldorado-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [eldorado](https://apis.io/servers/eldorado/eldorado/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Eldorado Authentication](https://apis.io/security/eldorado/eldorado-authentication/)
+- [Eldorado Domain Security](https://apis.io/security/eldorado/eldorado-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://eldorado.io)
+- [Documentation](https://api.eldorado.io/)
+- [Getting started](https://api.eldorado.io/guides/quick-start)
+- [API reference](https://api.eldorado.io/api-reference)
+- [Sign up](https://eldorado.io/en/api)
+- [Blog](https://eldorado.io/en/blog)
+
+## API Evangelist rating
+
+**Kin Score 24.8** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 39.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 20.8 |
+| Access clarity | 13.2 |
+
+**Agent readiness 23.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.2** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/eldorado/](https://apis.io/providers/eldorado/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Eldorado: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/eldorado/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
